@@ -1,15 +1,11 @@
+//selects random item from array as computer selection
 function computerPlay() {
-  let result = Math.floor(Math.random() * 3 + 1);
+  const selectionArray = ['ROCK', 'PAPER', 'SCISSORS'];
 
-  if (result == 1) {
-    return 'ROCK';
-  }
-  else if (result == 2) {
-    return 'PAPER';
-  }
-  else {
-    return 'SCISSORS';
-  }
+  const random = selectionArray[Math.floor(Math.random() *
+      selectionArray.length)];
+
+  return random;
 }
 
 //for player player selection
@@ -64,7 +60,7 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   const playerSelection = playerPlay();
   const computerSelection = computerPlay();
-  console.log(playRound(playerSelection, computerSelection, playerScore, computerScore));
+  console.log(playRound(playerSelection, computerSelection));
 
   console.log(playerScore, computerScore);
 }
