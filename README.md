@@ -6,4 +6,6 @@ Uni.
 
 Overall, I was able to work through the logic mostly using things that I head
 already learned, but I did learn a bit about JavaScript syntax and how insanely
-less troublesome it is compared to programming in C.
+less troublesome it is compared to programming in C. Semi-colons are actually
+optional in this language, so it was easy to get through writing the program
+without having to worry about the compiler bugging out.
