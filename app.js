@@ -1,3 +1,5 @@
+//GAME
+
 //selects random item from array as computer selection
 function computerPlay() {
   const selectionArray = ['ROCK', 'PAPER', 'SCISSORS'];
@@ -6,12 +8,9 @@ function computerPlay() {
       selectionArray.length)];
 
   return random;
-}
+};
 
-//for player player selection
-function playerPlay() {
-  return window.prompt("Select Rock, Paper, or Scissors!");
-}
+
 
 //score variables
 var playerScore = 0;
@@ -56,24 +55,29 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+
 //assigns user and computer selection and plays a round
 function game() {
-  const playerSelection = playerPlay();
+  const playerSelection = playRock();
   const computerSelection = computerPlay();
   console.log(playRound(playerSelection, computerSelection));
 
   console.log(playerScore, computerScore);
 }
 
-//plays game to 5 using game function
-while (playerScore < 5 && computerScore < 5) {
-  game();
-}
+//UI section==================================================================
+const selections = document.querySelectorAll('button');
 
-//Displays winner in alert message in browser
-if (playerScore >= 5) {
-  alert("You Win!");
-}
-else {
-  alert("Computer Wins!");
-}
+selections.forEach(selections => selections.addEventListener('click', (e) => {
+  playerSelection = e.target.id;
+  translateClick(playerSelection);
+}))
+
+
+function translateClick(playerSelection) {
+  computerSelection = computerPlay();
+  console.log(playRound(playerSelection, computerSelection));
+
+  console.log(playerScore, computerScore);
+
+};

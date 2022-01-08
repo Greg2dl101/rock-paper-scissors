@@ -1,0 +1,11 @@
+
+
+.selection-container {
+  font-size: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  font-size: 15rem;
+}
