@@ -14,7 +14,7 @@ function playerPlay() {
 }
 
 //score variables
-var playerScore = 0;
+let playerScore = 0;
 let computerScore = 0;
 
 //determines winner based on player inputs and cp selection
