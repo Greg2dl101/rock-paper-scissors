@@ -69,13 +69,13 @@ function game() {
 function declareWinner() {
   let gameCount = 0;
 
-  //plays game to 5 using game function
+  //plays game to 5 rounds
   while (gameCount < 5) {
     for (let i = 1; i <= 5; i++) {
       game();
       gameCount = i;
       console.log(gameCount);
-
+      //declare winner after five rounds
       if (gameCount == 5) {
         if (playerScore > computerScore) {
           return "You Win!";
