@@ -1,4 +1,9 @@
 const buttons = document.querySelectorAll("button");
+const resultDisplay = document.querySelector("#result-display");
+const userDisplay = document.querySelector("#user-display");
+const computerDisplay = document.querySelector("#computer-display");
+const displayWinner = document.querySelector("#display-winner");
+
 let playerSelection;
 let computerSelection;
 
@@ -52,49 +57,32 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+//uses two callbacks to play a round of rock, paper, scissors
 buttons.forEach((button) =>
   button.addEventListener("click", (e) => {
     computerSelection = computerPlay();
     playerSelection = e.target.id;
-    console.log(playerSelection);
-    console.log(computerSelection);
-    console.log(playRound(playerSelection, computerSelection));
+
+    resultDisplay.innerHTML = playRound(playerSelection, computerSelection);
+
+    userDisplay.innerHTML = playerScore;
+
+    computerDisplay.innerHTML = computerScore;
+
+    displayWinner.innerHTML = declareWinner(playerScore, computerScore);
   })
 );
 
-////////////////////////////////////////////////////////
-
-//assigns user and computer selection and plays a round
-function game() {
-  computerSelection = computerPlay();
-  console.log(playRound(playerSelection, computerSelection));
-
-  console.log(playerScore, computerScore);
+// Declares winner after 5 rounds!!!
+function declareWinner(playerScore, computerScore) {
+  if (playerScore >= 5 || computerScore >= 5) {
+    if (playerScore > computerScore) {
+      return "You Win!";
+    }
+    if (playerScore < computerScore) {
+      return "You Lose!";
+    }
+  } else {
+    return "Keep Playing!";
+  }
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-//Declares winner after 5 rounds!!!
-// function declareWinner() {
-//   let gameCount = 0;
-
-//   //plays game to 5 using game function
-//   while (gameCount < 5) {
-//     for (let i = 1; i <= 5; i++) {
-//       game();
-//       gameCount = i;
-//       console.log(gameCount);
-
-//       if (gameCount == 5) {
-//         if (playerScore > computerScore) {
-//           return "You Win!";
-//         } else {
-//           return "Computer Wins!";
-//         }
-//       }
-//     }
-//   }
-// }
-
-// alert(declareWinner());
-/////////////////////////////////////////////////
