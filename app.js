@@ -1,21 +1,17 @@
-//selects random item from array as computer selection
-function computerPlay() {
-  const selectionArray = ["ROCK", "PAPER", "SCISSORS"];
-
-  const random =
-    selectionArray[Math.floor(Math.random() * selectionArray.length)];
-
-  return random;
-}
-
-//for player player selection
-function playerPlay() {
-  return window.prompt("Select Rock, Paper, or Scissors!");
-}
+const buttons = document.querySelectorAll("button");
+let playerSelection;
+let computerSelection;
 
 //score variables
 let playerScore = 0;
 let computerScore = 0;
+
+//selects random item from array as computer selection
+function computerPlay() {
+  const selectionArray = ["ROCK", "PAPER", "SCISSORS"];
+
+  return selectionArray[Math.floor(Math.random() * selectionArray.length)];
+}
 
 //determines winner based on player inputs and cp selection
 function playRound(playerSelection, computerSelection) {
@@ -56,35 +52,49 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+buttons.forEach((button) =>
+  button.addEventListener("click", (e) => {
+    computerSelection = computerPlay();
+    playerSelection = e.target.id;
+    console.log(playerSelection);
+    console.log(computerSelection);
+    console.log(playRound(playerSelection, computerSelection));
+  })
+);
+
+////////////////////////////////////////////////////////
+
 //assigns user and computer selection and plays a round
 function game() {
-  const playerSelection = playerPlay();
-  const computerSelection = computerPlay();
+  computerSelection = computerPlay();
   console.log(playRound(playerSelection, computerSelection));
 
   console.log(playerScore, computerScore);
 }
 
-//function that declares a winner
-function declareWinner() {
-  let gameCount = 0;
+///////////////////////////////////////////////////////////////////////////////////////////////
 
-  //plays game to 5 using game function
-  while (gameCount < 5) {
-    for (let i = 1; i <= 5; i++) {
-      game();
-      gameCount = i;
-      console.log(gameCount);
+//Declares winner after 5 rounds!!!
+// function declareWinner() {
+//   let gameCount = 0;
 
-      if (gameCount == 5) {
-        if (playerScore > computerScore) {
-          return "You Win!";
-        } else {
-          return "Computer Wins!";
-        }
-      }
-    }
-  }
-}
+//   //plays game to 5 using game function
+//   while (gameCount < 5) {
+//     for (let i = 1; i <= 5; i++) {
+//       game();
+//       gameCount = i;
+//       console.log(gameCount);
 
-alert(declareWinner());
+//       if (gameCount == 5) {
+//         if (playerScore > computerScore) {
+//           return "You Win!";
+//         } else {
+//           return "Computer Wins!";
+//         }
+//       }
+//     }
+//   }
+// }
+
+// alert(declareWinner());
+/////////////////////////////////////////////////
