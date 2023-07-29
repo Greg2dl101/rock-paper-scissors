@@ -1,23 +1,20 @@
-//selects random item from array as computer selection
-function computerPlay() {
-  const selectionArray = ["ROCK", "PAPER", "SCISSORS"];
+const buttons = document.querySelectorAll("button");
+const resultDisplay = document.querySelector("#result-display");
+const userDisplay = document.querySelector("#user-display");
+const computerDisplay = document.querySelector("#computer-display");
 
-  const random =
-    selectionArray[Math.floor(Math.random() * selectionArray.length)];
+let playerSelection;
+let computerSelection;
 
-  return random;
-}
-
-//for player player selection
-function playerPlay() {
-  return window.prompt("Select Rock, Paper, or Scissors!");
-}
-
-//score variables
 let playerScore = 0;
 let computerScore = 0;
 
-//determines winner based on player inputs and cp selection
+function computerPlay() {
+  const selectionArray = ["ROCK", "PAPER", "SCISSORS"];
+
+  return selectionArray[Math.floor(Math.random() * selectionArray.length)];
+}
+
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toUpperCase();
 
@@ -56,35 +53,38 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-//assigns user and computer selection and plays a round
-function game() {
-  const playerSelection = playerPlay();
-  const computerSelection = computerPlay();
-  console.log(playRound(playerSelection, computerSelection));
+buttons.forEach((button) =>
+  button.addEventListener("click", (e) => {
+    computerSelection = computerPlay();
+    playerSelection = e.target.id;
 
-  console.log(playerScore, computerScore);
-}
+    resultDisplay.innerHTML = playRound(playerSelection, computerSelection);
 
-//function that declares a winner
-function declareWinner() {
-  let gameCount = 0;
+    userDisplay.innerHTML = playerScore;
 
-  //plays game to 5 rounds
-  while (gameCount < 5) {
-    for (let i = 1; i <= 5; i++) {
-      game();
-      gameCount = i;
-      console.log(gameCount);
-      //declare winner after five rounds
-      if (gameCount == 5) {
-        if (playerScore > computerScore) {
-          return "You Win!";
-        } else {
-          return "Computer Wins!";
-        }
-      }
+    computerDisplay.innerHTML = computerScore;
+
+    if (playerScore >= 5 || computerScore >= 5) {
+      resultDisplay.innerHTML = declareWinner(playerScore, computerScore);
+      resetScores();
     }
+  })
+);
+
+function declareWinner() {
+  if (playerScore >= 5 || computerScore >= 5) {
+    if (playerScore > computerScore) {
+      return "You Win!";
+    }
+    if (playerScore < computerScore) {
+      return "You Lose!";
+    }
+  } else {
+    return "";
   }
 }
 
-alert(declareWinner());
+function resetScores() {
+  playerScore = 0;
+  computerScore = 0;
+}
