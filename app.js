@@ -65,7 +65,10 @@ buttons.forEach((button) =>
     computerDisplay.innerHTML = computerScore;
 
     if (playerScore >= 5 || computerScore >= 5) {
-      resultDisplay.innerHTML = declareWinner(playerScore, computerScore);
+      resultDisplay.innerHTML = `${playRound(
+        playerSelection,
+        computerSelection
+      )} ${declareWinner(playerScore, computerScore)}`;
       resetScores();
     }
   })
@@ -74,10 +77,10 @@ buttons.forEach((button) =>
 function declareWinner() {
   if (playerScore >= 5 || computerScore >= 5) {
     if (playerScore > computerScore) {
-      return "You Win!";
+      return "You win it all!";
     }
     if (playerScore < computerScore) {
-      return "You Lose!";
+      return "You lost it all!";
     }
   } else {
     return "";
@@ -88,3 +91,5 @@ function resetScores() {
   playerScore = 0;
   computerScore = 0;
 }
+
+//TODO Refactor playRound() function
