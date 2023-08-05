@@ -18,38 +18,22 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toUpperCase();
 
-  if (playerSelection == "ROCK" && computerSelection == "SCISSORS") {
+  if (
+    (playerSelection == "ROCK" && computerSelection == "SCISSORS") ||
+    (playerSelection == "PAPER" && computerSelection == "ROCK") ||
+    (playerSelection == "SCISSORS" && computerSelection == "PAPER")
+  ) {
     playerScore = playerScore + 1;
-    return "You Win! Rock beats Scissors!";
-  }
-  if (playerSelection == "ROCK" && computerSelection == "PAPER") {
+    return `You Win! ${playerSelection} beats ${computerSelection}!`;
+  } else if (
+    (playerSelection == "ROCK" && computerSelection == "PAPER") ||
+    (playerSelection == "PAPER" && computerSelection == "SCISSORS") ||
+    (playerSelection == "SCISSORS" && computerSelection == "ROCK")
+  ) {
     computerScore = computerScore + 1;
-    return "Computer Wins! Paper beats Rock!";
-  }
-  if (playerSelection == "ROCK" && computerSelection == "ROCK") {
+    return `Computer Wins! ${computerSelection} beats ${playerSelection}`;
+  } else {
     return "It's a tie!";
-  }
-  if (playerSelection == "PAPER" && computerSelection == "SCISSORS") {
-    computerScore = computerScore + 1;
-    return "Computer Wins! Scissors beats Paper!";
-  }
-  if (playerSelection == "PAPER" && computerSelection == "PAPER") {
-    return "It's a tie!";
-  }
-  if (playerSelection == "PAPER" && computerSelection == "ROCK") {
-    playerScore = playerScore + 1;
-    return "You Win! Paper beats Rock!";
-  }
-  if (playerSelection == "SCISSORS" && computerSelection == "SCISSORS") {
-    return "It's a tie!";
-  }
-  if (playerSelection == "SCISSORS" && computerSelection == "PAPER") {
-    playerScore = playerScore + 1;
-    return "You Win! Scissors beats Paper!";
-  }
-  if (playerSelection == "SCISSORS" && computerSelection == "ROCK") {
-    computerScore = computerScore + 1;
-    return "Computer Wins! Rock beats Scissors!";
   }
 }
 
@@ -91,5 +75,3 @@ function resetScores() {
   playerScore = 0;
   computerScore = 0;
 }
-
-//TODO Refactor playRound() function
