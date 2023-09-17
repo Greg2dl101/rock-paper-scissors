@@ -48,7 +48,7 @@ buttons.forEach((button) =>
 
     computerDisplay.innerHTML = computerScore;
 
-    if (playerScore >= 5 || computerScore >= 5) {
+    if (playerScore === 5 || computerScore === 5) {
       resultDisplay.innerHTML = `${playRound(
         playerSelection,
         computerSelection
